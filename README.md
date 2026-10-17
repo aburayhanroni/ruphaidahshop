@@ -1,2 +1,2 @@
 # ruphaidahshop
-Official web repository for Ruphaidah Shop – an e-commerce platform offering quality products, smooth shopping, and fast delivery.
+Retail Shop Management & POS System | Inventory, Sales, Accounting, Supplier Ledgers, MFS, Warranty Tracking & Offline-Ready PWA
