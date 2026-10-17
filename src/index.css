@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 5 150 105;
+    --color-due: 217 119 6;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Accessible focus indicators across interactive controls */
+  :focus-visible {
+    outline: 2px solid theme('colors.emerald.600');
+    outline-offset: 2px;
+  }
+
+  /* Bengali typography helper */
+  .font-bengali {
+    font-family: 'Noto Sans Bengali', 'SolaimanLipi', sans-serif;
+    line-height: 1.5;
+  }
+}
+
+@layer utilities {
+  /* High-density POS inputs */
+  .pos-input {
+    @apply h-9 px-3 text-sm bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-md focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500;
+  }
+
+  /* Number formatting for tabular digits */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print Stylesheet for thermal receipts (58mm and 80mm) */
+@media print {
+  body {
+    background: transparent !important;
+    color: #000 !important;
+  }
+
+  /* Hide app shell chrome when printing */
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
