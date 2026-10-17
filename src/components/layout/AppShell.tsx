@@ -47,22 +47,37 @@ export const AppShell: React.FC<AppShellProps> = ({
     }
   }, [isDarkMode]);
 
-  // Global Keyboard Shortcuts
+  // Global Keyboard Shortcuts (F2: Catalog, F4: POS)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement | null;
-      const isEditing = Boolean(
-        target && (target.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName))
-      );
-      if (isEditing) return;
+      // Ignore modified combinations so OS/browser shortcuts (e.g. Alt+F4, Ctrl+F4) function normally
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+        return;
+      }
 
-      // F4: Point of Sale shortcut
+      // Check if target is inside an editable control or open dialog
+      const target = e.target;
+      const isElement = target instanceof Element;
+      const isEditing = Boolean(
+        isElement && (
+          (target as HTMLElement).isContentEditable ||
+          ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) ||
+          target.closest('[role="dialog"], dialog')
+        )
+      );
+
+      // Check if any modal dialog is currently open in the document
+      const isDialogOpen = Boolean(document.querySelector('[role="dialog"], dialog[open]'));
+
+      // If user is editing or interacting with a dialog, ignore shortcut and preserve normal browser behavior
+      if (isEditing || isDialogOpen) {
+        return;
+      }
+
       if (e.key === 'F4') {
         e.preventDefault();
         onSelectView('pos');
-      }
-      // F2: Product Catalog / Search shortcut
-      if (e.key === 'F2') {
+      } else if (e.key === 'F2') {
         e.preventDefault();
         onSelectView('catalog');
       }

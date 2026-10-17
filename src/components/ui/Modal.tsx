@@ -12,6 +12,15 @@ export interface ModalProps {
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
+const FOCUSABLE_SELECTOR = [
+  'a[href]',
+  'button:not([disabled])',
+  'input:not([disabled])',
+  'select:not([disabled])',
+  'textarea:not([disabled])',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ');
+
 export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
@@ -24,27 +33,46 @@ export const Modal: React.FC<ModalProps> = ({
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
-  // Focus trap, Escape key handling, and focus restoration
+  // Capture trigger element synchronously before DOM updates
+  useEffect(() => {
+    if (isOpen) {
+      previousActiveElement.current = document.activeElement as HTMLElement | null;
+    }
+  }, [isOpen]);
+
+  // Focus trap, initial focus, and escape listener
   useEffect(() => {
     if (!isOpen) return;
 
-    // Capture the trigger element that opened the modal
-    previousActiveElement.current = document.activeElement as HTMLElement | null;
+    // Helper to find all visible, non-disabled focusable elements inside dialog
+    const getFocusable = (): HTMLElement[] => {
+      if (!dialogRef.current) return [];
+      const elements = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+      return elements.filter((el) => {
+        return (
+          el.offsetParent !== null ||
+          el.getClientRects().length > 0 ||
+          (typeof window !== 'undefined' &&
+            window.getComputedStyle(el).display !== 'none' &&
+            window.getComputedStyle(el).visibility !== 'hidden')
+        );
+      });
+    };
 
-    // Set initial focus to first focusable element inside dialog or the close button
-    const focusableSelector =
-      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
-
-    const timer = setTimeout(() => {
-      if (dialogRef.current) {
-        const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(focusableSelector);
-        if (focusableElements.length > 0) {
-          focusableElements[0]?.focus();
-        } else {
-          dialogRef.current.focus();
-        }
+    // Move initial focus into the dialog
+    const focusInitial = () => {
+      if (!dialogRef.current) return;
+      const focusable = getFocusable();
+      if (focusable.length > 0 && focusable[0]) {
+        focusable[0].focus();
+      } else {
+        dialogRef.current.focus();
       }
-    }, 50);
+    };
+
+    // Immediate attempt + requestAnimationFrame fallback for async rendering
+    focusInitial();
+    const rafId = requestAnimationFrame(focusInitial);
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -53,26 +81,40 @@ export const Modal: React.FC<ModalProps> = ({
         return;
       }
 
-      // Trap Tab key navigation within modal dialog
-      if (e.key === 'Tab' && dialogRef.current) {
-        const focusable = Array.from(
-          dialogRef.current.querySelectorAll<HTMLElement>(focusableSelector)
-        );
+      if (e.key === 'Tab') {
+        if (!dialogRef.current) return;
+        const focusable = getFocusable();
+
+        // If no focusable controls exist, retain focus on dialog card
         if (focusable.length === 0) {
           e.preventDefault();
+          dialogRef.current.focus();
           return;
         }
 
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
+        const active = document.activeElement as HTMLElement | null;
 
+        // If focus escaped dialog or is on dialog card itself
+        if (!active || !dialogRef.current.contains(active) || active === dialogRef.current) {
+          e.preventDefault();
+          if (e.shiftKey) {
+            last?.focus();
+          } else {
+            first?.focus();
+          }
+          return;
+        }
+
+        // Cycle focus at bounds
         if (e.shiftKey) {
-          if (document.activeElement === first) {
+          if (active === first) {
             e.preventDefault();
             last?.focus();
           }
         } else {
-          if (document.activeElement === last) {
+          if (active === last) {
             e.preventDefault();
             first?.focus();
           }
@@ -83,10 +125,13 @@ export const Modal: React.FC<ModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      clearTimeout(timer);
+      cancelAnimationFrame(rafId);
       window.removeEventListener('keydown', handleKeyDown);
-      // Restore focus to the triggering element
-      previousActiveElement.current?.focus();
+      // Restore focus to previous active element if still in document and focusable
+      const trigger = previousActiveElement.current;
+      if (trigger && typeof trigger.focus === 'function' && trigger.isConnected) {
+        trigger.focus();
+      }
     };
   }, [isOpen, onClose]);
 
