@@ -14,7 +14,7 @@ export const ShiftStatusBar: React.FC<ShiftStatusBarProps> = ({ shiftInfo }) => 
         <div className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300">
           <User className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
           <span>{shiftInfo.cashierName}</span>
-          <span className="rounded bg-slate-200 px-1 py-0.2 text-[9px] uppercase font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+          <span className="rounded bg-slate-200 px-1.5 py-0.5 text-[10px] uppercase font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-300">
             {shiftInfo.role}
           </span>
         </div>
@@ -39,10 +39,10 @@ export const ShiftStatusBar: React.FC<ShiftStatusBarProps> = ({ shiftInfo }) => 
         <div className="hidden lg:flex items-center gap-2 text-slate-500 dark:text-slate-400">
           <Cpu className="h-3 w-3" />
           <span>Keys:</span>
-          <kbd className="rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-[9px] dark:border-slate-700 dark:bg-slate-800">
+          <kbd className="rounded border border-slate-300 bg-white px-1.5 py-0.5 font-mono text-[10px] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
             F2: Search
           </kbd>
-          <kbd className="rounded border border-slate-300 bg-white px-1 py-0.5 font-mono text-[9px] dark:border-slate-700 dark:bg-slate-800">
+          <kbd className="rounded border border-slate-300 bg-white px-1.5 py-0.5 font-mono text-[10px] text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300">
             F4: POS
           </kbd>
         </div>

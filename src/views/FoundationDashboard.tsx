@@ -23,21 +23,21 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
   return (
     <div className="space-y-6">
       {/* Top Banner: Explicit UI Foundation Labeling */}
-      <div className="rounded-xl border border-emerald-200 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 p-5 dark:border-emerald-900/40 dark:from-emerald-950/40 dark:via-slate-900 dark:to-emerald-950/30">
+      <div className="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 shadow-sm">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <Badge variant="primary" size="md">
                 Phase 1: Step 2 Complete
               </Badge>
-              <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">
+              <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">
                 UI Foundation & Design System Ready
               </span>
             </div>
             <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
               Ruphaidah Shop Management System (RSMS)
             </h2>
-            <p className="text-xs text-slate-600 dark:text-slate-300 max-w-2xl">
+            <p className="text-xs text-slate-600 dark:text-slate-400 max-w-2xl">
               This dashboard serves as the operational UI foundation, proving design tokens, responsive layout,
               Bengali typography, and BDT currency formatting. Real business tables and Supabase integrations are scheduled for Phase 1, Step 3.
             </p>
@@ -56,7 +56,7 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
 
       {/* Architecture Readiness Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="border-l-4 border-l-emerald-500">
+        <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -69,13 +69,13 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
                 Strict TypeScript Verified
               </p>
             </div>
-            <div className="rounded-lg bg-emerald-100 p-2.5 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">
+            <div className="rounded-md bg-slate-100 p-2.5 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
               <Terminal className="h-5 w-5" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-blue-500">
+        <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -88,13 +88,13 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
                 Schema Stage 3 Pending
               </p>
             </div>
-            <div className="rounded-lg bg-blue-100 p-2.5 text-blue-700 dark:bg-blue-950 dark:text-blue-300">
+            <div className="rounded-md bg-slate-100 p-2.5 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
               <Database className="h-5 w-5" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-amber-500">
+        <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -107,13 +107,13 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
                 Accessible & Dark Mode
               </p>
             </div>
-            <div className="rounded-lg bg-amber-100 p-2.5 text-amber-700 dark:bg-amber-950 dark:text-amber-300">
+            <div className="rounded-md bg-slate-100 p-2.5 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
               <Palette className="h-5 w-5" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-l-4 border-l-purple-500">
+        <Card>
           <CardContent className="p-4 flex items-center justify-between">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
@@ -122,11 +122,11 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
               <h4 className="text-base font-bold text-slate-900 dark:text-slate-100 mt-0.5">
                 BDT (৳) & Asia/Dhaka
               </h4>
-              <p className="text-[11px] text-purple-600 dark:text-purple-400 font-medium mt-1">
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 font-medium mt-1">
                 {formatDhakaDate(new Date())}
               </p>
             </div>
-            <div className="rounded-lg bg-purple-100 p-2.5 text-purple-700 dark:bg-purple-950 dark:text-purple-300">
+            <div className="rounded-md bg-slate-100 p-2.5 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
               <Calendar className="h-5 w-5" />
             </div>
           </CardContent>
@@ -150,7 +150,7 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
+              <div className="flex items-center justify-between text-xs p-2.5 rounded-md bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-emerald-600" />
                   <span className="font-semibold text-slate-800 dark:text-slate-200">
@@ -160,7 +160,7 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
                 <Badge variant="success" size="sm">Completed & Pushed</Badge>
               </div>
 
-              <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800">
+              <div className="flex items-center justify-between text-xs p-2.5 rounded-md bg-emerald-50/60 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800">
                 <div className="flex items-center gap-2">
                   <div className="h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
                   <span className="font-semibold text-emerald-900 dark:text-emerald-300">
@@ -170,7 +170,7 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
                 <Badge variant="primary" size="sm">In Progress (Active)</Badge>
               </div>
 
-              <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 opacity-70">
+              <div className="flex items-center justify-between text-xs p-2.5 rounded-md bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 opacity-70">
                 <div className="flex items-center gap-2">
                   <Layers className="h-4 w-4 text-slate-400" />
                   <span className="text-slate-700 dark:text-slate-300">
@@ -180,7 +180,7 @@ export const FoundationDashboard: React.FC<FoundationDashboardProps> = ({ onNavi
                 <Badge variant="neutral" size="sm">Upcoming Next</Badge>
               </div>
 
-              <div className="flex items-center justify-between text-xs p-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 opacity-60">
+              <div className="flex items-center justify-between text-xs p-2.5 rounded-md bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 opacity-60">
                 <div className="flex items-center gap-2">
                   <Layers className="h-4 w-4 text-slate-400" />
                   <span className="text-slate-700 dark:text-slate-300">

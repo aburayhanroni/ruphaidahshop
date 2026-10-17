@@ -39,6 +39,50 @@
   .tabular-nums {
     font-variant-numeric: tabular-nums;
   }
+
+  /* Reusable motion utilities */
+  .animate-modal-fade {
+    animation: modalFadeIn 150ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  }
+
+  .animate-modal-scale {
+    animation: modalScaleIn 200ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  }
+
+  .animate-view-fade {
+    animation: viewFadeIn 150ms cubic-bezier(0, 0, 0.2, 1) forwards;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes viewFadeIn {
+  from {
+    opacity: 0.85;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Reduced motion preference */

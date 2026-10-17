@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 export const Card: React.FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
   <div
     className={cn(
-      'rounded-xl border border-slate-200 bg-white shadow-card transition-shadow dark:border-slate-800 dark:bg-slate-900',
+      'rounded-lg border border-slate-200 bg-white shadow-sm transition-shadow dark:border-slate-800 dark:bg-slate-900',
       className
     )}
     {...props}
@@ -12,7 +12,7 @@ export const Card: React.FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...p
 );
 
 export const CardHeader: React.FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
-  <div className={cn('flex flex-col space-y-1.5 p-5 border-b border-slate-100 dark:border-slate-800/60', className)} {...props} />
+  <div className={cn('flex flex-col space-y-1.5 p-4 border-b border-slate-100 dark:border-slate-800/60', className)} {...props} />
 );
 
 export const CardTitle: React.FC<HTMLAttributes<HTMLHeadingElement>> = ({ className, ...props }) => (
@@ -24,9 +24,9 @@ export const CardDescription: React.FC<HTMLAttributes<HTMLParagraphElement>> = (
 );
 
 export const CardContent: React.FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
-  <div className={cn('p-5', className)} {...props} />
+  <div className={cn('p-4', className)} {...props} />
 );
 
 export const CardFooter: React.FC<HTMLAttributes<HTMLDivElement>> = ({ className, ...props }) => (
-  <div className={cn('flex items-center p-5 pt-0 border-t border-slate-100 dark:border-slate-800/60 mt-4', className)} {...props} />
+  <div className={cn('flex items-center p-4 pt-3 border-t border-slate-100 dark:border-slate-800/60', className)} {...props} />
 );

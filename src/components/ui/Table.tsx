@@ -2,8 +2,8 @@ import React, { type HTMLAttributes, type TdHTMLAttributes, type ThHTMLAttribute
 import { cn } from '@/lib/utils';
 
 export const Table: React.FC<HTMLAttributes<HTMLTableElement>> = ({ className, ...props }) => (
-  <div className="relative w-full overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800">
-    <table className={cn('w-full caption-bottom text-sm', className)} {...props} />
+  <div className="relative w-full overflow-x-auto rounded-md border border-slate-200 dark:border-slate-800">
+    <table className={cn('w-full caption-bottom text-xs', className)} {...props} />
   </div>
 );
 
@@ -28,7 +28,7 @@ export const TableRow: React.FC<HTMLAttributes<HTMLTableRowElement>> = ({ classN
 export const TableHead: React.FC<ThHTMLAttributes<HTMLTableCellElement>> = ({ className, ...props }) => (
   <th
     className={cn(
-      'h-10 px-4 text-left align-middle font-semibold text-xs text-slate-500 uppercase tracking-wider dark:text-slate-400 select-none',
+      'h-8 px-3 text-left align-middle font-semibold text-[11px] text-slate-500 uppercase tracking-wider dark:text-slate-400 select-none',
       className
     )}
     {...props}
@@ -36,9 +36,9 @@ export const TableHead: React.FC<ThHTMLAttributes<HTMLTableCellElement>> = ({ cl
 );
 
 export const TableCell: React.FC<TdHTMLAttributes<HTMLTableCellElement>> = ({ className, ...props }) => (
-  <td className={cn('p-4 align-middle text-slate-700 dark:text-slate-300', className)} {...props} />
+  <td className={cn('py-2 px-3 align-middle text-xs text-slate-700 dark:text-slate-300', className)} {...props} />
 );
 
 export const TableCaption: React.FC<HTMLAttributes<HTMLTableCaptionElement>> = ({ className, ...props }) => (
-  <caption className={cn('mt-4 text-xs text-slate-500 dark:text-slate-400', className)} {...props} />
+  <caption className={cn('mt-3 text-xs text-slate-500 dark:text-slate-400', className)} {...props} />
 );

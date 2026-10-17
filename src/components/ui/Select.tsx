@@ -6,39 +6,62 @@ export interface SelectOption {
   label: string;
 }
 
-export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
   label?: string;
   error?: string;
   helperText?: string;
   options?: SelectOption[];
+  size?: 'sm' | 'md';
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, label, error, helperText, options, id, children, disabled, ...props }, ref) => {
+  (
+    {
+      className,
+      label,
+      error,
+      helperText,
+      options,
+      size = 'md',
+      id,
+      children,
+      disabled,
+      required,
+      ...props
+    },
+    ref
+  ) => {
     const selectId = id || (label ? label.toLowerCase().replace(/\s+/g, '-') : undefined);
+
+    const sizes = {
+      sm: 'h-8 px-2.5 text-xs',
+      md: 'h-9 px-3 text-sm',
+    };
 
     return (
       <div className="w-full space-y-1">
         {label && (
           <label
             htmlFor={selectId}
-            className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300"
+            className="block text-xs font-medium text-slate-700 dark:text-slate-300"
           >
             {label}
+            {required && <span className="text-rose-500 ml-0.5" aria-hidden="true">*</span>}
           </label>
         )}
         <select
           ref={ref}
           id={selectId}
           disabled={disabled}
+          required={required}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? `${selectId}-error` : helperText ? `${selectId}-helper` : undefined}
           className={cn(
-            'block w-full rounded-md border text-sm transition-colors',
+            'block w-full rounded-md border transition-colors',
             'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100',
             'focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500',
             'disabled:bg-slate-100 dark:disabled:bg-slate-800 disabled:opacity-60 disabled:cursor-not-allowed',
-            'h-10 px-3',
+            sizes[size],
             error
               ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500'
               : 'border-slate-300 dark:border-slate-700',

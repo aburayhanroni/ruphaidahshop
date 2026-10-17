@@ -36,13 +36,13 @@ export const Header: React.FC<HeaderProps> = ({
           type="button"
           onClick={onToggleSidebar}
           aria-label="Toggle navigation menu"
-          className="rounded-lg p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          className="rounded-md p-2 text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800 lg:hidden transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           <Menu className="h-5 w-5" />
         </button>
 
         <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600 text-white font-bold text-sm shadow-sm dark:bg-emerald-500">
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-600 text-white font-bold text-sm shadow-sm dark:bg-emerald-500">
             <Store className="h-4 w-4" />
           </div>
           <div className="hidden sm:block">
@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Right: Terminal, Network Pill, Theme Toggle, Profile */}
       <div className="flex items-center gap-2.5">
         {/* Terminal Badge */}
-        <div className="hidden md:flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-600 dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-300">
+        <div className="hidden md:flex items-center gap-1.5 rounded border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-600 dark:border-slate-800 dark:bg-slate-800/60 dark:text-slate-300">
           <Clock className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
           <span>{activeTerminalCode}</span>
         </div>
@@ -68,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div
           role="status"
           aria-label={`Network status: ${connectivityStatus}`}
-          className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold border ${
+          className={`flex items-center gap-1.5 rounded px-2 py-0.5 text-xs font-medium border ${
             connectivityStatus === 'online'
               ? 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/50 dark:bg-emerald-950/40 dark:text-emerald-300'
               : connectivityStatus === 'offline'
@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
           type="button"
           onClick={onToggleDarkMode}
           aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-          className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+          className="rounded-md p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
         >
           {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
         </button>

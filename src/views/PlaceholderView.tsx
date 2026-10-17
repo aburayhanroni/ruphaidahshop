@@ -34,10 +34,10 @@ export const PlaceholderView: React.FC<PlaceholderViewProps> = ({ viewId, onNavi
 
   return (
     <div className="max-w-3xl mx-auto space-y-6 py-6">
-      <Card className="border-dashed border-2">
+      <Card className="border-dashed">
         <CardHeader className="text-center pb-2">
-          <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400 mb-3 shadow-sm">
-            <Icon className="h-7 w-7" />
+          <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 mb-3">
+            <Icon className="h-6 w-6" />
           </div>
           <div className="flex items-center justify-center gap-2">
             <Badge variant="primary">{stageInfo.stage}</Badge>
@@ -50,7 +50,7 @@ export const PlaceholderView: React.FC<PlaceholderViewProps> = ({ viewId, onNavi
         </CardHeader>
 
         <CardContent className="space-y-4 text-center">
-          <div className="max-w-md mx-auto rounded-lg bg-slate-50 p-4 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-xs space-y-2 text-slate-600 dark:text-slate-300">
+          <div className="max-w-md mx-auto rounded-md bg-slate-50 p-4 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 text-xs space-y-2 text-slate-600 dark:text-slate-300">
             <p className="font-semibold text-slate-800 dark:text-slate-200">
               Target Milestone: {stageInfo.title}
             </p>

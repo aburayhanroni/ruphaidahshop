@@ -166,7 +166,7 @@ export const Modal: React.FC<ModalProps> = ({
     >
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm animate-modal-fade"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -176,12 +176,12 @@ export const Modal: React.FC<ModalProps> = ({
         ref={dialogRef}
         tabIndex={-1}
         className={cn(
-          'relative w-full rounded-2xl bg-white shadow-elevated dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col max-h-[90vh] overflow-hidden focus:outline-none',
+          'relative w-full rounded-lg bg-white shadow-xl dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col max-h-[90vh] overflow-hidden focus:outline-none animate-modal-scale',
           sizes[size]
         )}
       >
         {/* Header */}
-        <div className="flex items-start justify-between border-b border-slate-100 p-5 dark:border-slate-800">
+        <div className="flex items-start justify-between border-b border-slate-100 p-4 dark:border-slate-800">
           <div>
             {title && (
               <h2 id="modal-title" className="text-base font-semibold text-slate-900 dark:text-slate-100">
@@ -198,14 +198,14 @@ export const Modal: React.FC<ModalProps> = ({
             type="button"
             onClick={onClose}
             aria-label="Close dialog"
-            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="rounded-md p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Content Body */}
-        <div className="overflow-y-auto p-5 text-sm text-slate-600 dark:text-slate-300">
+        <div className="overflow-y-auto p-4 text-sm text-slate-600 dark:text-slate-300">
           {children}
         </div>
 
